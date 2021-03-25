@@ -11,12 +11,12 @@ export class TasksService {
     return this.tasks;
   }
 
-  getTaskById(id:string):Task{
-    return this.tasks.find(task=>task.id==id)
+  getTaskById(id: string): Task {
+    return this.tasks.find((task) => task.id == id);
   }
 
-  createTasks(createTaskDto:CreateTaskDto):Task {
-      const {title,description}=createTaskDto
+  createTasks(createTaskDto: CreateTaskDto): Task {
+    const { title, description } = createTaskDto;
     const task: Task = {
       id: uuid(),
       title,
@@ -26,5 +26,9 @@ export class TasksService {
 
     this.tasks.push(task);
     return task;
+  }
+
+  deleteTasks(id: string):void {
+    this.tasks=this.tasks.filter(task => task.id !== id);
   }
 }
